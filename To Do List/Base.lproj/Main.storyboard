@@ -31,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="WbZ-cQ-xQw" kind="show" id="QaT-Xu-p84"/>
+                                            <segue destination="WbZ-cQ-xQw" kind="show" identifier="EditItem" id="QaT-Xu-p84"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -41,7 +41,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="To Do List" id="3qz-D1-vLz">
-                        <barButtonItem key="leftBarButtonItem" title="Add" id="dyf-Yx-HK7"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="dyf-Yx-HK7">
+                            <connections>
+                                <action selector="editBarButtonPressed:" destination="BYZ-38-t0r" id="yGG-LK-asT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YWi-0o-tzg">
                             <connections>
                                 <segue destination="NWk-RG-bAP" kind="presentation" identifier="AddItem" id="hDe-9T-eA0"/>
@@ -49,6 +53,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBarButton" destination="YWi-0o-tzg" id="rxl-Ed-Hvd"/>
+                        <outlet property="editBarButton" destination="dyf-Yx-HK7" id="jwH-f2-Xop"/>
                         <outlet property="tableView" destination="vMA-FA-VOy" id="GKO-XI-sXm"/>
                     </connections>
                 </viewController>
@@ -64,7 +70,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Do Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNe-h1-rDW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Do Item:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNe-h1-rDW">
                                 <rect key="frame" x="20" y="131" width="374" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -88,13 +94,19 @@
                                 <action selector="cancelPressed:" destination="WbZ-cQ-xQw" id="e9T-QB-6Kd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Qoq-9n-mdi"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Qoq-9n-mdi">
+                            <connections>
+                                <segue destination="l0H-Q7-Ka9" kind="unwind" identifier="UnwindFromSave" unwindAction="unwindFromDetailViewControllerWithSegue:" id="JeM-su-gdo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="toDoField" destination="wNe-h1-rDW" id="R0h-y5-EFC"/>
+                        <outlet property="toDoField" destination="dPg-UO-kdM" id="9SR-yA-3Gg"/>
+                        <outlet property="toDoLabel" destination="wNe-h1-rDW" id="R0h-y5-EFC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTz-Ti-9BS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="l0H-Q7-Ka9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2371.0144927536235" y="130.58035714285714"/>
         </scene>
